@@ -99,6 +99,7 @@ def parse_args():
     parser.add_argument('--exp_name', type=str, default=timestamp())
     parser.add_argument('--mode', type=str, default='local')
     parser.add_argument('--log_dir', type=str, default=None)
+    parser.add_argument('--train_all', action='store_true')
     args = parser.parse_args()
 
     return args
@@ -192,10 +193,36 @@ def launch_experiments(variant_generator, args):
             sync_s3_pkl=True)
 
 
+def launch_experiment(variant_generator, args):
+    variants = variant_generator.variants()
+    for i, variant in enumerate(variants):
+        full_experiment_name = variant['prefix']
+        full_experiment_name += '-' + args.exp_name + '-' + str(i).zfill(2)
+
+        run_sql_experiment(
+            run_experiment,
+            mode=args.mode,
+            variant=variant,
+            exp_prefix=variant['prefix'] + '/' + args.exp_name,
+            exp_name=full_experiment_name,
+            n_parallel=1,
+            seed=variant['seed'],
+            terminate_machine=True,
+            log_dir=args.log_dir,
+            snapshot_mode=variant['snapshot_mode'],
+            snapshot_gap=variant['snapshot_gap'],
+            sync_s3_pkl=True)
+
+        return
+
+
 def main():
     args = parse_args()
     variant_generator = get_variants(args)
-    launch_experiments(variant_generator, args)
+    if args.train_all:
+        launch_experiments(variant_generator, args)
+    else:
+        launch_experiment(variant_generator, args)
 
 
 if __name__ == '__main__':
