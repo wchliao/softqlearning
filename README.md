@@ -46,4 +46,4 @@ The following are the contributions. The corrected `rllab` is included in this r
 4. Add more features to simulation
    Add features in `<softqlearning PATH>/softqlearning/scripts/sim_policy.py`  
 
-5. Add MultiGoalEnv in `<softqlearning PATH>/examples/all_sql.py`
+5. Add MultiGoalEnv and SingleGoalEnv in `<softqlearning PATH>/examples/all_sql.py`

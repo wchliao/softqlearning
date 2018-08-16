@@ -13,7 +13,7 @@ from softqlearning.misc.utils import timestamp
 from softqlearning.replay_buffers import SimpleReplayBuffer
 from softqlearning.value_functions import NNQFunction
 from softqlearning.policies import StochasticNNPolicy
-from softqlearning.environments import GymEnv, MultiGoalEnv
+from softqlearning.environments import GymEnv, MultiGoalEnv, SingleGoalEnv
 from softqlearning.misc.sampler import SimpleSampler
 
 SHARED_PARAMS = {
@@ -95,7 +95,18 @@ ENV_PARAMS = {
         'n_epochs': 1000,
         'reward_scale': 0.1,
         'max_pool_size': 1E6,
-        'kernel_particles': 32
+        'kernel_particles': 32,
+    },
+    'singlegoal': {
+        'prefix': 'singlegoal',
+        'env_name': 'singlegoal-rllab',
+        'max_path_length': 30,
+        'epoch_length': 100,
+        'n_epochs': 1000,
+        'reward_scale': 0.1,
+        'max_pool_size': 1E6,
+        'kernel_particles': 32,
+        'goal_position': [5, 0],
     },
 }
 DEFAULT_ENV = 'swimmer'
@@ -139,6 +150,8 @@ def run_experiment(variant):
         env = normalize(AntEnv())
     elif variant['env_name'] == 'multigoal-rllab':
         env = normalize(MultiGoalEnv())
+    elif variant['env_name'] == 'singlegoal-rllab':
+        env = normalize(SingleGoalEnv(variant['goal_position']))
     else:
         env = normalize(GymEnv(variant['env_name']))
 
