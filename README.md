@@ -40,7 +40,7 @@ The following are the contributions. The corrected `rllab` is included in this r
    Rllab requires action information and environment information in rollout, but soft Q-learning does not implement these elements, which will trigger an error.  
    Therefore, we remove the requirement for action and environment information in order to avoid the error.
    
-   In file `<softqlearning PATH>\<rllab PATH>/rllab/sampler/utils.py`:  
+   In file `<rllab PATH>/rllab/sampler/utils.py`:  
    Remove `agent_infos` and `env_infos` for return
 
 4. Add a variable to assign the number of trajectory
