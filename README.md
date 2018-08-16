@@ -16,7 +16,7 @@ Please refer to the [instructions](README.origin.md) and the following correctio
    ```
    
 2. `ImportError: cannot import name 'LinearNDInterpolator'`  
-   If 'LinearNDInterpolator' cannot be found, reinstall `scipy`.  
+   If `LinearNDInterpolator` cannot be found, reinstall `scipy`.  
    ```
    pip uninstall scipy
    pip install scipy
