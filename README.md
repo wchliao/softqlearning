@@ -43,6 +43,5 @@ The following are the contributions. The corrected `rllab` is included in this r
    In file `<rllab PATH>/rllab/sampler/utils.py`:  
    Remove `agent_infos` and `env_infos` for return
 
-4. Add a variable to assign the number of trajectory
-   In file `<softqlearning PATH>/softqlearning/scripts/sim_policy.py`:  
-   Add `num-trajectory`
+4. Add more features to simulation
+   Add features in `<softqlearning PATH>/softqlearning/scripts/sim_policy.py`  
