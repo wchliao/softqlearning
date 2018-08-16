@@ -11,6 +11,7 @@ def parse_args():
     parser.add_argument('file', type=str, help='Path to the snapshot file.')
     parser.add_argument('--max-path-length', '-l', type=int, default=1000)
     parser.add_argument('--speedup', '-s', type=float, default=1)
+    parser.add_argument('--num-trajectory', '-n', type=int, default=100)
     parser.set_defaults(deterministic=True)
 
     args = parser.parse_args()
@@ -28,10 +29,10 @@ def simulate_policy(args):
             policy = data['policy']
             env = data['env']
 
-        while True:
+        for _ in range(args.num_trajectory):
             rollout(env, policy,
                     max_path_length=args.max_path_length,
-                    animated=True, speedup=args.speedup)
+                    speedup=args.speedup)
 
 
 def main():
