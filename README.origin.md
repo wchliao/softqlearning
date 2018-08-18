@@ -101,7 +101,7 @@ python ./examples/mujoco_all_sql.py --env=swimmer --log_dir="/root/sql/data/swim
 
 2. To simulate the agent (*NOTE*: This step currently fails with the Docker installation, due to missing display.)
 ```
-python ./scripts/sim_policy.py /root/sql/data/swimmer-experiment/itr_<iteration>.pkl
+python ./scripts/sim_policy.py /root/sql/data/swimmer-experiment/params.pkl
 ```
 
 `mujoco_all_sql.py` contains several different environments and there are more example scripts available in the  `/examples` folder. For more information about the agents and configurations, run the scripts with `--help` flag. For example:
