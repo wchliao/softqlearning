@@ -1,6 +1,7 @@
 import argparse
 
 import joblib
+import pickle
 import numpy as np
 import tensorflow as tf
 
@@ -12,7 +13,9 @@ def parse_args():
     parser.add_argument('file', type=str, help='Path to the snapshot file.')
     parser.add_argument('--max-path-length', '-l', type=int, default=1000)
     parser.add_argument('--speedup', '-s', type=float, default=1)
-    parser.add_argument('--num-trajectory', '-n', type=int, default=100)
+    parser.add_argument('--num-trajectory', '-n', type=int, default=50)
+    parser.add_argument('--save', default='trajectory.pkl')
+    parser.add_argument('--save_name', type=str, default='trajectory.pkl')
     parser.set_defaults(deterministic=True)
 
     args = parser.parse_args()
@@ -37,7 +40,11 @@ def simulate_policy(args):
                            speedup=args.speedup)
             paths.append(path)
 
-        print('Average reward: {}'.format(np.mean([sum(p['rewards']) for p in paths])))
+    print('Average reward: {}'.format(np.mean([sum(p['rewards']) for p in paths])))
+
+    if args.save:
+        with open(args.save_name, 'wb') as f:
+            pickle.dump(paths, f)
 
 
 def main():
