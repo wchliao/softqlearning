@@ -4,7 +4,7 @@
 
 This repo fixes some bugs in the [original repo](https://github.com/haarnoja/softqlearning). 
 
-## Usage
+## Installation
 
 Please refer to the [instructions](README.origin.md) and the following corrections for the usage.
    
@@ -21,6 +21,19 @@ Please refer to the [instructions](README.origin.md) and the following correctio
    pip uninstall scipy
    pip install scipy
    ```
+
+## How To Use
+
+1. Train soft Q-learning in SingleGoalEnv
+   1. In file `<softqlearning PATH>/examples/all_sql.py`:
+      Assign goal position in line 109
+   2. ```python ./examples/all_sql.py --env=singlegoal --log_dir=<model PATH>```
+
+2. Save trajectories  
+   ```
+   python ./scripts/sim_policy.py <model PATH> --save --save_name <trajectory FILENAME>
+   ```
+   You can also use flag `--num-trajectory` to assign the number of trajectories you want to sample. (Default: 50)
 
 ## Contributions
 
