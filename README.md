@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This repo fixes some bugs in the [original repo](https://github.com/haarnoja/softqlearning). 
+This repo fixes some bugs and add some new features to the [original repo](https://github.com/haarnoja/softqlearning). 
 
 ## Installation
 
