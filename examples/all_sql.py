@@ -106,7 +106,7 @@ ENV_PARAMS = {
         'reward_scale': 0.1,
         'max_pool_size': 1E6,
         'kernel_particles': 32,
-        'goal_position': [5, 0],
+        'goal_position': [[5, 0]]
     },
 }
 DEFAULT_ENV = 'swimmer'
@@ -151,6 +151,7 @@ def run_experiment(variant):
     elif variant['env_name'] == 'multigoal-rllab':
         env = normalize(MultiGoalEnv())
     elif variant['env_name'] == 'singlegoal-rllab':
+        print('Goal position: {}'.format(variant['goal_position']))
         env = normalize(SingleGoalEnv(variant['goal_position']))
     else:
         env = normalize(GymEnv(variant['env_name']))
